@@ -45,7 +45,7 @@ Settings has a Light / Dark / System theme (light by default) and switches for t
 
 ## Demo claims
 
-[DEMO.md](DEMO.md) lists five real claims with the page and the exact text to highlight, including one that turns out wrong (Wikipedia's "9% recycled, 1950s–2018" → **Changed**) an honest **No original source found**, and a TinyResearch "Source found, but nothing behind it".
+[DEMO.md](DEMO.md) lists five real claims with the page and the exact text to highlight, including one that turns out wrong (Wikipedia's "9% recycled, 1950s–2018" → **Changed**), an honest **No original source found**, and a TinyResearch "Source found, but nothing behind it".
 
 ## How TinyFish is used
 
