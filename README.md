@@ -2,6 +2,8 @@
 
 A Chrome extension that does the check a journalist, student or analyst should do before quoting a number. Highlight a statistic, claim or quote on any page and click **Check source**. Checky follows the claim back through the pages that repeat it to the original study, report, filing or interview. It shows every step with its link, date and exact wording, and flags where the claim was **rounded, changed or misquoted**, or where **no original source exists**.
 
+**▶ [Watch the 52-second demo](media/checky-demo.mp4)**, made from real runs.
+
 Built for the TinyFish **Source Hunter** bounty. It uses four TinyFish endpoints: Search, Fetch, Agent and TinyResearch.
 
 ## Install (2 minutes)
@@ -43,7 +45,7 @@ Settings has a Light / Dark / System theme (light by default) and switches for t
 
 ## Demo claims
 
-[DEMO.md](DEMO.md) lists six real claims with the page and the exact text to highlight, including one that turns out wrong (Wikipedia's "9% recycled, 1950s–2018" → **Changed**) and honest **No original source found** results.
+[DEMO.md](DEMO.md) lists five real claims with the page and the exact text to highlight, including one that turns out wrong (Wikipedia's "9% recycled, 1950s–2018" → **Changed**) an honest **No original source found**, and a TinyResearch "Source found, but nothing behind it".
 
 ## How TinyFish is used
 

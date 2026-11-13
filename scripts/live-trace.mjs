@@ -1,11 +1,14 @@
 // Runs a real trace from the terminal, without Chrome, so the pipeline can be checked
 // against live TinyFish.
-//   node scripts/live-trace.mjs "<claim text>" <page url> [--research] [--agent]
+//   node scripts/live-trace.mjs "<claim text>" <page url> [--research] [--agent] [--out=trace.json]
+// --out saves the request, the final state and the card at each step (for demos and test pages).
 // Reads TINYFISH_API_KEY from the environment or from a .env file in this folder.
 import { readFileSync, existsSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 import { runTrace } from '../lib/tracer.js';
+import { cardData } from '../lib/carddata.js';
+import { writeFileSync } from 'node:fs';
 import { setApiKey, fetchUrls } from '../lib/tinyfish.js';
 import { locatePassage, mdLinks, resolveFootnotes } from '../lib/claims.js';
 import { getHtml, buildLinkMap, linksForPassage } from '../lib/linkmap.js';
@@ -39,11 +42,15 @@ const req = { id: 'cli', claim, sentence: loc?.quote || claim, context: loc?.raw
 console.log(`Start passage: ${loc?.quote}\nLinks near it: ${links.length}\n`);
 
 let lastPhase = '';
+const cards = []; // the card as it looked at each phase
 const state = await runTrace(
   req,
   { apiKey: key, useResearch: flags.has('--research'), useAgent: flags.has('--agent'), maxHops: 5 },
   (s) => {
-    if (s.phase !== lastPhase) console.log('…', (lastPhase = s.phase));
+    if (s.phase !== lastPhase) {
+      console.log('…', (lastPhase = s.phase));
+      cards.push(cardData(req, s));
+    }
   },
   new AbortController().signal,
 );
@@ -64,3 +71,9 @@ if (state.figures?.length) console.log('\nFigures:', state.figures.map((f) => [f
 if (state.research?.status !== 'off') console.log('\nResearch:', state.research.status, state.research.originalLine || state.research.error || '');
 console.log('\nLog:\n' + state.log.map((l) => '  ' + l.msg).join('\n'));
 console.log('\nUsage:', state.usage);
+
+const out = args.find((a) => a.startsWith('--out='))?.slice(6);
+if (out) {
+  writeFileSync(out, JSON.stringify({ req, state, cards: [...cards, cardData(req, state)] }, null, 1));
+  console.log('Saved', out);
+}
