@@ -1,0 +1,74 @@
+{
+  "manifest_version": 3,
+  "name": "Checky",
+  "version": "0.1.0",
+  "description": "Highlight a number, claim or quote, click once, and trace it back to its original source — with every step and every change flagged.",
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "action": {
+    "default_title": "Checky",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png"
+    }
+  },
+  "permissions": [
+    "contextMenus",
+    "storage",
+    "sidePanel",
+    "activeTab",
+    "scripting",
+    "favicon",
+    "offscreen"
+  ],
+  "host_permissions": [
+    "http://*/*",
+    "https://*/*"
+  ],
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "side_panel": {
+    "default_path": "sidepanel/sidepanel.html"
+  },
+  "options_page": "options/options.html",
+  "content_scripts": [
+    {
+      "matches": [
+        "http://*/*",
+        "https://*/*"
+      ],
+      "js": [
+        "content/content.js",
+        "content/card.js"
+      ],
+      "run_at": "document_idle"
+    }
+  ],
+  "commands": {
+    "trace-selection": {
+      "suggested_key": {
+        "default": "Alt+Shift+S"
+      },
+      "description": "Trace the source of the selected text"
+    }
+  },
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "_favicon/*",
+        "fonts/*",
+        "ui/tokens.css"
+      ],
+      "matches": [
+        "http://*/*",
+        "https://*/*"
+      ]
+    }
+  ],
+  "minimum_chrome_version": "116"
+}

@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+  <!-- Checky: a check mark between citation brackets. Source for icon16/48/128.png. -->
+  <rect width="128" height="128" rx="30" fill="#17171a"/>
+  <path d="M42 34H30v60h12M86 34h12v60H86" fill="none" stroke="#f7f6f2" stroke-opacity=".5" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M45 66l13 13 26-30" fill="none" stroke="#f7f6f2" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

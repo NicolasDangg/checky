@@ -1,0 +1,32 @@
+<!doctype html>
+<!-- Settings test page: loads options/options.html's body with stubbed extension APIs.
+     options.html#dark for the dark theme. -->
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Settings harness</title>
+  <script>
+    const store = { theme: location.hash.includes('dark') ? 'dark' : 'light', apiKey: 'sk-test' };
+    const listeners = [];
+    window.chrome = { storage: {
+      local: {
+        get: async (d) => ({ ...d, ...store }),
+        set: async (o) => { Object.assign(store, o); for (const l of listeners) l(Object.fromEntries(Object.entries(o).map(([k, v]) => [k, { newValue: v }])), 'local'); },
+      },
+      onChanged: { addListener: (f) => listeners.push(f) },
+    } };
+  </script>
+  <script src="../../ui/theme.js"></script>
+  <link rel="stylesheet" href="../../ui/fonts.css" />
+  <link rel="stylesheet" href="../../ui/tokens.css" />
+  <link rel="stylesheet" href="../../options/options.css" />
+</head>
+<body>
+  <script type="module">
+    const html = await fetch('../../options/options.html').then((r) => r.text());
+    const body = html.slice(html.indexOf('<body>') + 6, html.indexOf('<script src="options.js"')).replaceAll('../icons/', '../../icons/');
+    document.body.innerHTML = body;
+    await import('../../options/options.js');
+  </script>
+</body>
+</html>

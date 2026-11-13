@@ -1,0 +1,49 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Card harness</title>
+<style>body{font:18px/1.6 Georgia,serif;margin:0;background:#fff;color:#222}main{max-width:640px;margin:40px auto;padding:0 20px}p{margin:0 0 1.2em}</style>
+</head><body><main>
+<h1>A Whopping 91% of Plastic Isn't Recycled</h1>
+<p>Lorem ipsum filler paragraph so the claim isn't at the very top of the page. Plastic is everywhere, from packaging to clothing, and production keeps growing year after year.</p>
+<p id="c">In December 2018, Great Britain's Royal Statistical Society named the core fact in this story—that <span id="claim">only about nine percent of all plastic ever made has likely been recycled</span>— its statistic of the year.</p>
+<p>More filler text. The study's authors estimated that by 2050 some 12 billion metric tons of plastic waste would be in landfills or the natural environment.</p>
+<p style="height:1400px">Even more filler to allow scrolling.</p>
+</main>
+<script>
+  // Stub of the extension APIs the card uses.
+  window.chrome = { runtime: { getURL: (p) => p.includes('_favicon') ? 'https://www.google.com/s2/favicons?sz=32&domain_url=' + encodeURIComponent(decodeURIComponent(p.split('pageUrl=')[1].split('&')[0])) : '../../' + p.replace(/^\//, ''), sendMessage: async (m) => console.log('sendMessage', JSON.stringify(m)) }, storage: { local: { get: async (d) => ({ ...d, theme: location.hash.includes('dark') ? 'dark' : 'light' }) }, onChanged: { addListener() {} } } };
+  if (location.hash.includes('dark')) document.documentElement.style.cssText = 'background:#1a1a1a;color:#ddd;filter:none';
+</script>
+<script src="../../content/card.js"></script>
+<script>
+  const r = document.createRange();
+  r.selectNodeContents(document.getElementById('claim'));
+  const steps = [
+    { title: 'A whopping 91% of plastic isn’t recycled', site: 'nationalgeographic.com', url: 'https://www.nationalgeographic.com/', favUrl: 'https://www.nationalgeographic.com/', date: 'Dec 20, 2018', kind: 'secondary', via: 'page', status: null },
+    { title: 'Statistics of the Year 2018: Winners announced', site: 'rss.org.uk', url: 'https://rss.org.uk/', favUrl: 'https://rss.org.uk/', date: null, kind: 'secondary', via: 'cited', status: 'match' },
+    { title: 'Production, use, and fate of all plastics ever made', site: 'advances.sciencemag.org', url: 'https://doi.org/10.1126/sciadv.1700782', favUrl: 'https://www.science.org/', date: 'Jul 7, 2017', kind: 'primary', via: 'scholar', status: 'match', archived: true, venue: 'Science Advances' },
+  ];
+  const base = { id: 'x1', claim: 'only about nine percent of all plastic ever made has likely been recycled' };
+  window.demo = {
+    running: () => __shCard({ ...base, status: 'running', phase: 'Step 2: reading 2 sources cited by nationalgeographic.com', verdict: null, steps: steps.slice(0, 1) }),
+    done: () => __shCard({ ...base, status: 'done', phase: 'Done', elapsed: 14, verdict: { status: 'match', headline: 'Matches the original', detail: 'Earliest source reached: Production, use, and fate of all plastics ever made (2017-07-07), 2 steps back. Found by searching OpenAlex + PubMed; the page before it doesn’t link to it.', research: '', originIndex: 2 }, steps }),
+    changed: () => __shCard({ ...base, status: 'done', verdict: { status: 'changed', headline: 'Changed from the original', detail: 'Year differs: claim says 2018, source says 2015.', originIndex: 2 }, steps: steps.map((s, i) => i === 2 ? { ...s, status: 'changed' } : s) }),
+  };
+  demo.nothing = () => __shCard({ id: 'x2', claim: 'the average attention span dropped from 12 seconds to eight seconds', status: 'done', research: 'done', elapsed: 412, verdict: { status: 'none', headline: 'Source found, but nothing behind it', detail: 'The claim matches How does digital affect Canadian attention spans? (2015-05-01), 1 step back, but that source cites no study or data for it, and TinyResearch found none either.', originIndex: 1 }, steps: [
+    { title: 'You now have a shorter attention span than a goldfish', site: 'time.com', url: 'https://time.com/', favUrl: 'https://time.com/', date: 'May 14, 2015', kind: 'secondary', via: 'page', status: null },
+    { title: 'How does digital affect Canadian attention spans?', site: 'advertising.microsoft.com', url: 'https://microsoft.com/', favUrl: 'https://microsoft.com/', date: null, kind: 'publisher', via: 'cited', status: 'match', archived: true }] });
+  demo.wiki = () => __shCard({ ...base, id: 'x3', claim: 'an estimated 9% has been recycled', status: 'done', elapsed: 9, figures: [{ raw: '9%', status: 'exact' }], verdict: { status: 'changed', headline: 'Changed from the original', detail: 'Earliest source reached: Production, use, and fate of all plastics ever made, 2 steps back. Year differs: claim mentions 1950, 2018, source mentions 2015.', originIndex: 2 }, steps: [
+    { title: 'Plastic pollution', site: 'en.wikipedia.org', url: 'https://en.wikipedia.org/', favUrl: 'https://en.wikipedia.org/', date: 'Oct 3, 2012', kind: 'reference', via: 'page', status: null },
+    { title: 'Plastic pollution (section)', site: 'en.wikipedia.org', url: 'https://en.wikipedia.org/', favUrl: 'https://en.wikipedia.org/', kind: 'reference', via: 'internal', status: 'changed' },
+    { title: 'Production, use, and fate of all plastics ever made', site: 'science.org', url: 'https://www.science.org/', favUrl: 'https://www.science.org/', date: 'Jul 19, 2017', kind: 'primary', via: 'footnote', status: 'changed', venue: 'Science Advances' }] });
+  demo.pending = () => { window.__shPendingRange = r; __shCardPending(); };
+  demo.run2 = () => __shCard({ ...base, status: 'running', phase: 'Step 3: searching scholarly databases', verdict: null, steps: steps.slice(0, 2) });
+  // Lifecycle: instant pill → progress → verdict expands into the card.
+  demo.pending();
+  if (!location.hash.includes('hold')) {
+    setTimeout(demo.running, 1500);
+    setTimeout(demo.run2, 3000);
+    setTimeout(demo.done, 4500);
+  }
+</script>
+</body></html>

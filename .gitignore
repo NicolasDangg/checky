@@ -1,0 +1,8 @@
+.env
+node_modules/
+.DS_Store
+# design notes and AI-assistant files stay local
+docs/
+AGENTS.md
+CLAUDE.md
+.claude/

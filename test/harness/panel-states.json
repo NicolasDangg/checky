@@ -1,0 +1,447 @@
+{
+ "rounded": {
+  "id": "p1",
+  "claim": "Half of young adults have quit social media for a week",
+  "claimFull": "Half of young adults have quit social media for a week",
+  "quoteText": null,
+  "page": {
+   "url": "https://news.example.com/story",
+   "title": "Story"
+  },
+  "status": "done",
+  "phase": "Done",
+  "steps": [
+   {
+    "url": "https://news.example.com/story",
+    "title": "Story",
+    "site": "news.example.com",
+    "date": "2024-06-01",
+    "quote": "Half of young adults have quit social media for a week, studies show (50%).",
+    "context": "",
+    "via": "page",
+    "kind": "secondary",
+    "links": [
+     {
+      "url": "https://blog.example.com/stats",
+      "text": "studies show",
+      "weight": 4
+     }
+    ],
+    "named": [],
+    "score": 1,
+    "checked": [],
+    "alternatives": [],
+    "cmp": {
+     "status": "match",
+     "numbers": [
+      {
+       "claim": {
+        "raw": "Half",
+        "value": 50,
+        "kind": "percent",
+        "currency": null,
+        "precision": 10,
+        "qualifier": null,
+        "index": 0,
+        "ratio": true
+       },
+       "source": {
+        "raw": "Half",
+        "value": 50,
+        "kind": "percent",
+        "currency": null,
+        "precision": 10,
+        "qualifier": null,
+        "index": 0,
+        "ratio": true
+       },
+       "status": "exact",
+       "dist": 0
+      }
+     ],
+     "flags": [],
+     "quote": null
+    },
+    "drift": []
+   },
+   {
+    "url": "https://blog.example.com/stats",
+    "title": "Social media stats you need",
+    "site": "blog.example.com",
+    "date": "2024-05-01",
+    "author": null,
+    "quote": "A recent report found that half of young adults have quit social media for a week, according to the Digital Habits Institute.",
+    "context": "A recent report found that half of young adults have quit social media for a week, according to the Digital Habits Institute. Read the report",
+    "via": "cited",
+    "kind": "secondary",
+    "links": [
+     {
+      "text": "Read the report",
+      "rawText": "Read the report",
+      "url": "https://dhi.example.org/report-2023.pdf",
+      "weight": 3
+     }
+    ],
+    "linkMap": "text",
+    "named": [
+     "Digital Habits Institute. Read"
+    ],
+    "score": 1,
+    "ov": 1,
+    "candScore": 4,
+    "cmp": {
+     "status": "match",
+     "numbers": [
+      {
+       "claim": {
+        "raw": "Half",
+        "value": 50,
+        "kind": "percent",
+        "currency": null,
+        "precision": 10,
+        "qualifier": null,
+        "index": 0,
+        "ratio": true
+       },
+       "source": {
+        "raw": "half",
+        "value": 50,
+        "kind": "percent",
+        "currency": null,
+        "precision": 10,
+        "qualifier": null,
+        "index": 27,
+        "ratio": true
+       },
+       "status": "exact",
+       "dist": 0
+      }
+     ],
+     "flags": [],
+     "quote": null
+    },
+    "drift": [
+     "Rounded here: says half, but its source (step 3) says 48.7%"
+    ],
+    "checked": [],
+    "alternatives": []
+   },
+   {
+    "url": "https://dhi.example.org/report-2023.pdf",
+    "title": "Digital Habits Report 2023",
+    "site": "dhi.example.org",
+    "date": "2023-03-10",
+    "author": null,
+    "quote": "Among adults aged 18 to 29, 48.7% said they had quit social media for at least a week in the past year.",
+    "context": "Among adults aged 18 to 29, 48.7% said they had quit social media for at least a week in the past year. The survey of 2,000 adults was fielded in January 2023.",
+    "via": "cited",
+    "kind": "document",
+    "links": [],
+    "linkMap": "text",
+    "named": [],
+    "score": 0.7753571428571429,
+    "ov": 0.7142857142857143,
+    "candScore": 4.5,
+    "cmp": {
+     "status": "rounded",
+     "numbers": [
+      {
+       "claim": {
+        "raw": "Half",
+        "value": 50,
+        "kind": "percent",
+        "currency": null,
+        "precision": 10,
+        "qualifier": null,
+        "index": 0,
+        "ratio": true
+       },
+       "source": {
+        "raw": "48.7%",
+        "value": 48.7,
+        "kind": "percent",
+        "currency": null,
+        "precision": 0.1,
+        "qualifier": null,
+        "index": 28
+       },
+       "status": "rounded",
+       "dist": 0.025999999999999943
+      }
+     ],
+     "flags": [
+      "Rounded: source says 48.7%, claim says Half"
+     ],
+     "quote": null
+    },
+    "drift": []
+   }
+  ],
+  "figures": [
+   {
+    "claim": "Half",
+    "chain": [
+     {
+      "raw": "Half",
+      "num": {
+       "raw": "Half",
+       "value": 50,
+       "kind": "percent",
+       "currency": null,
+       "precision": 10,
+       "qualifier": null,
+       "index": 0,
+       "ratio": true
+      },
+      "status": "exact"
+     },
+     {
+      "raw": "half",
+      "num": {
+       "raw": "half",
+       "value": 50,
+       "kind": "percent",
+       "currency": null,
+       "precision": 10,
+       "qualifier": null,
+       "index": 27,
+       "ratio": true
+      },
+      "status": "exact"
+     },
+     {
+      "raw": "48.7%",
+      "num": {
+       "raw": "48.7%",
+       "value": 48.7,
+       "kind": "percent",
+       "currency": null,
+       "precision": 0.1,
+       "qualifier": null,
+       "index": 28
+      },
+      "status": "rounded"
+     }
+    ]
+   }
+  ],
+  "verdict": {
+   "status": "rounded",
+   "headline": "Rounded from the original",
+   "detail": "Earliest source reached: Digital Habits Report 2023 (2023-03-10), 2 steps back. Rounded: source says 48.7%, claim says Half.",
+   "originIndex": 2,
+   "primary": true,
+   "research": ""
+  },
+  "research": {
+   "status": "off",
+   "progress": []
+  },
+  "papers": [],
+  "log": [],
+  "startedAt": 1794562612854,
+  "finishedAt": 1794562612884,
+  "usage": {
+   "search": 0,
+   "fetch": 2,
+   "agent": 0,
+   "research": 0,
+   "scholar": {
+    "openalex": 0,
+    "pubmed": 0,
+    "arxiv": 0
+   }
+  }
+ },
+ "nothing": {
+  "id": "p2",
+  "claim": "48.7% said they had quit social media for at least a week",
+  "claimFull": "48.7% said they had quit social media for at least a week",
+  "quoteText": null,
+  "page": {
+   "url": "https://news.example.com/story",
+   "title": "Story"
+  },
+  "status": "done",
+  "phase": "Done",
+  "steps": [
+   {
+    "url": "https://news.example.com/story",
+    "title": "Story",
+    "site": "news.example.com",
+    "date": "2024-06-01",
+    "quote": "Among adults aged 18 to 29, 48.7% said they had quit social media for at least a week, the institute said.",
+    "context": "",
+    "via": "page",
+    "kind": "secondary",
+    "links": [
+     {
+      "url": "https://dhi.example.org/report-2023.pdf",
+      "text": "the institute said",
+      "weight": 4
+     }
+    ],
+    "named": [],
+    "score": 1,
+    "checked": [],
+    "alternatives": [],
+    "cmp": {
+     "status": "match",
+     "numbers": [
+      {
+       "claim": {
+        "raw": "48.7%",
+        "value": 48.7,
+        "kind": "percent",
+        "currency": null,
+        "precision": 0.1,
+        "qualifier": null,
+        "index": 0
+       },
+       "source": {
+        "raw": "48.7%",
+        "value": 48.7,
+        "kind": "percent",
+        "currency": null,
+        "precision": 0.1,
+        "qualifier": null,
+        "index": 28
+       },
+       "status": "exact",
+       "dist": 0
+      }
+     ],
+     "flags": [],
+     "quote": null
+    },
+    "drift": []
+   },
+   {
+    "url": "https://dhi.example.org/report-2023.pdf",
+    "title": "Digital Habits Report 2023",
+    "site": "dhi.example.org",
+    "date": "2023-03-10",
+    "author": null,
+    "quote": "Among adults aged 18 to 29, 48.7% said they had quit social media for at least a week in the past year.",
+    "context": "Among adults aged 18 to 29, 48.7% said they had quit social media for at least a week in the past year. The survey of 2,000 adults was fielded in January 2023.",
+    "via": "cited",
+    "kind": "document",
+    "links": [],
+    "linkMap": "text",
+    "named": [],
+    "score": 1,
+    "ov": 1,
+    "candScore": 5.5,
+    "cmp": {
+     "status": "match",
+     "numbers": [
+      {
+       "claim": {
+        "raw": "48.7%",
+        "value": 48.7,
+        "kind": "percent",
+        "currency": null,
+        "precision": 0.1,
+        "qualifier": null,
+        "index": 0
+       },
+       "source": {
+        "raw": "48.7%",
+        "value": 48.7,
+        "kind": "percent",
+        "currency": null,
+        "precision": 0.1,
+        "qualifier": null,
+        "index": 28
+       },
+       "status": "exact",
+       "dist": 0
+      }
+     ],
+     "flags": [],
+     "quote": null
+    },
+    "drift": []
+   }
+  ],
+  "figures": [
+   {
+    "claim": "48.7%",
+    "chain": [
+     {
+      "raw": "48.7%",
+      "num": {
+       "raw": "48.7%",
+       "value": 48.7,
+       "kind": "percent",
+       "currency": null,
+       "precision": 0.1,
+       "qualifier": null,
+       "index": 28
+      },
+      "status": "exact"
+     },
+     {
+      "raw": "48.7%",
+      "num": {
+       "raw": "48.7%",
+       "value": 48.7,
+       "kind": "percent",
+       "currency": null,
+       "precision": 0.1,
+       "qualifier": null,
+       "index": 28
+      },
+      "status": "exact"
+     }
+    ]
+   }
+  ],
+  "verdict": {
+   "status": "none",
+   "headline": "Source found, but nothing behind it",
+   "detail": "The claim matches Digital Habits Report 2023 (2023-03-10), 1 step back, but that source cites no study or data for it, and TinyResearch found none either.",
+   "research": "The figure was copied from an aggregator site that cites nothing; no study behind it could be found by anyone who checked.",
+   "originIndex": 1,
+   "primary": false
+  },
+  "research": {
+   "status": "done",
+   "progress": [],
+   "id": "r1",
+   "run": {
+    "status": "COMPLETED",
+    "deep_result": {
+     "result": "# Report\n\n## Executive Summary\n\nThe figure was copied from an aggregator site that cites nothing; no study behind it could be found by anyone who checked.\n\nORIGINAL SOURCE: NONE FOUND",
+     "citations": [
+      "https://law.example.edu/goldfish"
+     ]
+    }
+   },
+   "report": "# Report\n\n## Executive Summary\n\nThe figure was copied from an aggregator site that cites nothing; no study behind it could be found by anyone who checked.\n\nORIGINAL SOURCE: NONE FOUND",
+   "citations": [
+    "https://law.example.edu/goldfish"
+   ],
+   "termination": null,
+   "originalLine": "NONE FOUND",
+   "saysNone": true,
+   "summary": "The figure was copied from an aggregator site that cites nothing; no study behind it could be found by anyone who checked.",
+   "target": null
+  },
+  "papers": [],
+  "log": [],
+  "startedAt": 1794562612884,
+  "finishedAt": 1794562612887,
+  "usage": {
+   "search": 0,
+   "fetch": 1,
+   "agent": 0,
+   "research": 1,
+   "scholar": {
+    "openalex": 0,
+    "pubmed": 0,
+    "arxiv": 0
+   }
+  }
+ }
+}

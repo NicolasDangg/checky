@@ -1,0 +1,85 @@
+/* Checky design tokens, shared by the side panel, Settings and the on-page card.
+   Selectors are ":root, .ck" so extension pages (data-theme on <html>) and the card's
+   shadow root (class "ck" + data-theme on its wrapper) both pick them up.
+   Theme: data-theme="light" (default) | "dark" | "system". */
+
+:root, .ck {
+  --font: "Geist", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --mono: "Geist Mono", ui-monospace, "SF Mono", "Cascadia Mono", Consolas, monospace;
+
+  --paper: #f7f6f2;      /* page / panel background */
+  --surface: #ffffff;    /* cards */
+  --sunk: #efede7;       /* wells, chips, hover */
+  --ink: #17171a;
+  --ink-2: #55565c;
+  --ink-3: #8b8c92;
+  --line: #e4e1d9;
+  --line-2: #cfcbc0;
+
+  --ok: #16794a;   --ok-bg: #e6f3eb;   --ok-line: #a9d6bb;
+  --warn: #946100; --warn-bg: #fbf0d9; --warn-line: #e8cb8d;
+  --bad: #b3261e;  --bad-bg: #fbe8e6;  --bad-line: #efb2ab;
+  --none: #56627a; --none-bg: #edf0f4; --none-line: #c3cad6;
+  --run: #17171a;  --run-bg: #efede7;  --run-line: #cfcbc0;
+
+  --hl-run: rgba(23, 23, 26, .10);
+  --hl-ok: rgba(22, 121, 74, .18);
+  --hl-warn: rgba(214, 150, 20, .26);
+  --hl-bad: rgba(179, 38, 30, .18);
+  --hl-none: rgba(86, 98, 122, .18);
+
+  --shadow: 0 1px 2px rgba(20, 20, 24, .06), 0 10px 28px rgba(20, 20, 24, .12);
+  --radius: 10px;
+  color-scheme: light;
+}
+
+:root[data-theme="dark"], .ck[data-theme="dark"] {
+  --paper: #121214;
+  --surface: #1b1b1e;
+  --sunk: #26262a;
+  --ink: #ededea;
+  --ink-2: #b2b1ac;
+  --ink-3: #7f7e7a;
+  --line: #2c2c31;
+  --line-2: #3d3d43;
+
+  --ok: #62cf92;   --ok-bg: #15281d;   --ok-line: #2a5a3e;
+  --warn: #f0b952; --warn-bg: #2e2410; --warn-line: #63501f;
+  --bad: #ff8b7d;  --bad-bg: #331917;  --bad-line: #6e3530;
+  --none: #a9b4c7; --none-bg: #22262e; --none-line: #444c5a;
+  --run: #ededea;  --run-bg: #26262a;  --run-line: #3d3d43;
+
+  --hl-run: rgba(237, 237, 234, .14);
+  --hl-ok: rgba(98, 207, 146, .22);
+  --hl-warn: rgba(240, 185, 82, .26);
+  --hl-bad: rgba(255, 139, 125, .24);
+  --hl-none: rgba(169, 180, 199, .22);
+
+  --shadow: 0 1px 2px rgba(0, 0, 0, .4), 0 12px 32px rgba(0, 0, 0, .45);
+  color-scheme: dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root[data-theme="system"], .ck[data-theme="system"] {
+    --paper: #121214;
+    --surface: #1b1b1e;
+    --sunk: #26262a;
+    --ink: #ededea;
+    --ink-2: #b2b1ac;
+    --ink-3: #7f7e7a;
+    --line: #2c2c31;
+    --line-2: #3d3d43;
+    --ok: #62cf92;   --ok-bg: #15281d;   --ok-line: #2a5a3e;
+    --warn: #f0b952; --warn-bg: #2e2410; --warn-line: #63501f;
+    --bad: #ff8b7d;  --bad-bg: #331917;  --bad-line: #6e3530;
+    --none: #a9b4c7; --none-bg: #22262e; --none-line: #444c5a;
+    --run: #ededea;  --run-bg: #26262a;  --run-line: #3d3d43;
+    --hl-run: rgba(237, 237, 234, .14);
+    --hl-ok: rgba(98, 207, 146, .22);
+    --hl-warn: rgba(240, 185, 82, .26);
+    --hl-bad: rgba(255, 139, 125, .24);
+    --hl-none: rgba(169, 180, 199, .22);
+    --shadow: 0 1px 2px rgba(0, 0, 0, .4), 0 12px 32px rgba(0, 0, 0, .45);
+    color-scheme: dark;
+  }
+}

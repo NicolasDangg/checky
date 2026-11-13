@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Checky settings</title>
+    <script src="../ui/theme.js"></script>
+    <link rel="stylesheet" href="../ui/fonts.css" />
+    <link rel="stylesheet" href="../ui/tokens.css" />
+    <link rel="stylesheet" href="options.css" />
+  </head>
+  <body>
+    <main>
+      <header class="hero">
+        <img src="../icons/icon128.png" alt="" width="40" height="40" />
+        <div>
+          <h1>Checky</h1>
+          <p class="lead">Traces a claim back to its original source, and flags where it changed on the way.</p>
+        </div>
+      </header>
+
+      <section>
+        <h2>TinyFish API key</h2>
+        <div class="box">
+          <div class="keyrow">
+            <input id="apiKey" type="password" autocomplete="off" spellcheck="false" placeholder="sk-tinyfish-…" aria-label="TinyFish API key" />
+            <button class="primary" id="save" type="button">Save</button>
+            <button id="test" type="button">Test key</button>
+          </div>
+          <div class="keystatus"><span class="sdot" id="sdot"></span><span id="status">Not set</span></div>
+          <p class="hint">Create one at <a href="https://agent.tinyfish.ai/api-keys" target="_blank" rel="noopener">agent.tinyfish.ai/api-keys</a>. It's stored only in this browser and sent only to TinyFish.</p>
+        </div>
+      </section>
+
+      <section>
+        <h2>How deep to check</h2>
+        <div class="box list">
+          <label class="row">
+            <span class="txt"><b>Deep check with TinyResearch</b><span>An independent investigation alongside each trace. Takes 5–20 min. Its sources are verified and merged into the trail.</span></span>
+            <span class="cost m">≈ $2 / check</span>
+            <input type="checkbox" class="switch" id="useResearch" />
+          </label>
+          <label class="row">
+            <span class="txt"><b>Read blocked pages with TinyAgent</b><span>When a cited page blocks plain fetching, open it in a real browser. At most 2 per check.</span></span>
+            <span class="cost m">billed per page</span>
+            <input type="checkbox" class="switch" id="useAgent" />
+          </label>
+          <label class="row">
+            <span class="txt"><b>Search scholarly papers</b><span>When the trail goes cold on a research claim, look for the paper in OpenAlex, PubMed and arXiv, then read it to confirm.</span></span>
+            <span class="cost m">free</span>
+            <input type="checkbox" class="switch" id="useScholar" />
+          </label>
+        </div>
+      </section>
+
+      <section>
+        <h2>Display</h2>
+        <div class="box list">
+          <div class="row">
+            <span class="txt"><b>Theme</b><span>Applies to the card, the side panel and this page.</span></span>
+            <div class="seg" role="radiogroup" aria-label="Theme">
+              <button type="button" role="radio" data-theme-opt="light">Light</button>
+              <button type="button" role="radio" data-theme-opt="dark">Dark</button>
+              <button type="button" role="radio" data-theme-opt="system">System</button>
+            </div>
+          </div>
+          <label class="row">
+            <span class="txt"><b>Show the result card on the page</b><span>A summary next to the text you checked, joined to it by a line. Off: results open in the side panel.</span></span>
+            <input type="checkbox" class="switch" id="showCard" />
+          </label>
+          <label class="row">
+            <span class="txt"><b>Show “Check source” when I select text</b><span>The right-click menu and <kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>S</kbd> work either way.</span></span>
+            <input type="checkbox" class="switch" id="showButton" />
+          </label>
+        </div>
+      </section>
+
+      <details class="adv">
+        <summary>Advanced</summary>
+        <div class="box list">
+          <div class="row">
+            <span class="txt"><b>TinyResearch mode</b><span>Max digs further on complex claims.</span></span>
+            <select id="researchMode"><option value="deep">Deep · $2</option><option value="max">Max · $3</option></select>
+          </div>
+          <div class="row">
+            <span class="txt"><b>Maximum steps to follow</b><span>How many pages back a trail may go (1–8).</span></span>
+            <input id="maxHops" type="number" min="1" max="8" class="num" />
+          </div>
+          <div class="row stack">
+            <span class="txt"><b>OpenAlex API key</b><span>Optional. Without one, OpenAlex allows about 100 searches a day per network. Get a free key at <a href="https://openalex.org/settings/api" target="_blank" rel="noopener">openalex.org/settings/api</a>. Saved as you type; sent only to OpenAlex.</span></span>
+            <input id="openAlexKey" type="password" autocomplete="off" placeholder="Leave empty for the shared free tier" />
+          </div>
+        </div>
+      </details>
+
+      <p class="foot m">Fonts: Geist and Geist Mono (SIL Open Font License).</p>
+    </main>
+    <script src="options.js" type="module"></script>
+  </body>
+</html>

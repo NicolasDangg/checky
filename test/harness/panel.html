@@ -1,0 +1,39 @@
+<!doctype html>
+<!-- Side panel test page: the real sidepanel.js with stubbed extension APIs.
+     panel.html#rounded, #nothing, #dark (combinable, e.g. #nothing-dark). -->
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Panel harness</title>
+  <script>
+    const states = fetch('panel-states.json').then((r) => r.json());
+    const which = location.hash.includes('nothing') ? 'nothing' : 'rounded';
+    window.chrome = {
+      runtime: {
+        getURL: (p) => 'https://www.google.com/s2/favicons?sz=32&domain_url=' + encodeURIComponent(decodeURIComponent((p.split('pageUrl=')[1] || '').split('&')[0])),
+        sendMessage: async (m) => (m.type === 'getState' ? states.then((s) => ({ req: { id: 'p' }, state: s[which] })) : null),
+        onMessage: { addListener() {} },
+        openOptionsPage() {},
+      },
+      storage: {
+        local: { get: async (d) => ({ ...d, theme: location.hash.includes('dark') ? 'dark' : 'light' }) },
+        session: { get: async () => ({}) },
+        onChanged: { addListener() {} },
+      },
+    };
+  </script>
+  <script src="../../ui/theme.js"></script>
+  <link rel="stylesheet" href="../../ui/fonts.css" />
+  <link rel="stylesheet" href="../../ui/tokens.css" />
+  <link rel="stylesheet" href="../../sidepanel/sidepanel.css" />
+</head>
+<body>
+  <header class="top">
+    <div class="brand"><img src="../../icons/icon48.png" alt="" width="18" height="18" />Checky</div>
+    <div class="top-actions"><button id="btn-settings" class="ghost" type="button">Settings</button></div>
+  </header>
+  <main id="app" aria-live="polite"></main>
+  <footer id="usage"></footer>
+  <script type="module" src="../../sidepanel/sidepanel.js"></script>
+</body>
+</html>
